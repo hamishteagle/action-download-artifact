@@ -42,21 +42,21 @@ jobs:
     steps:
       - name: Dump
         run: |
-          mkdir artifact_duplicate
-          echo $GITHUB_SHA > artifact/sha
+          mkdir artifact_a
+          echo $GITHUB_SHA > artifact_a/sha
       - name: Upload first
         uses: actions/upload-artifact@v4
         with:
           name: artifact_duplicate
-          path: artifact
+          path: artifact_a
       - name: Dump2
         run: |
-          mkdir artifact2
-          echo $GITHUB_SHA"_latest" > artifact2/sha
+          mkdir artifact_b
+          echo $GITHUB_SHA"_latest" > artifact_b/sha
       - name: Upload second
         uses: actions/upload-artifact@v4
         with:
           name: artifact_duplicate
-          path: artifact2
+          path: artifact_b
       
 
