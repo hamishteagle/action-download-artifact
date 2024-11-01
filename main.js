@@ -142,6 +142,7 @@ async function main() {
                             run_id: run.id,
                         })
                         artifacts = artifacts.sort((a, b) => (a.updated_at - b.updated_at))
+                        core.info(`==> (found) Artifacts: ${artifacts}`)
                         if (!artifacts || artifacts.length == 0) {
                             continue
                         }
@@ -161,7 +162,7 @@ async function main() {
                     runID = run.id
                     core.info(`==> (found) Run ID: ${runID}`)
                     core.info(`==> (found) Run date: ${run.created_at}`)
-                    core.info(`==> (found) Artifacts: ${artifacts}`)
+
 
                     if (!workflow) {
                         workflow = await getWorkflow(client, owner, repo, runID)
