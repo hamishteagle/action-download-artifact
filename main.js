@@ -151,6 +151,7 @@ async function main() {
                                 if (nameIsRegExp) {
                                     return artifact.name.match(name) !== null
                                 }
+                                core.info(`==> (found) Artifact: ${JSON.stringify(artifact.name)}`)
                                 return artifact.name == name
                             })
                             if (!artifact) {
