@@ -224,20 +224,11 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
-      - name: Dump new
-        run: |
-          mkdir artifact
-          echo $GITHUB_SHA"_new" > artifact/sha
-      - name: Upload new
-        uses: actions/upload-artifact@v4
-        with:
-          name: artifact
-          path: artifact
       - name: Download
         uses: ./
         with:
           workflow: upload.yml
-          name: artifact
+          name: artifact_duplicate
           path: artifact
           search_artifacts: true
       - name: Test
