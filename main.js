@@ -141,6 +141,7 @@ async function main() {
                             repo: repo,
                             run_id: run.id,
                         })
+                        artifacts = artifacts.sort((a, b) => (b.updated_at - a.updated_at))
                         if (!artifacts || artifacts.length == 0) {
                             continue
                         }
