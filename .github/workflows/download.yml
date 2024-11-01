@@ -236,6 +236,7 @@ jobs:
       - name: Download
         uses: ./
         with:
+          workflow: upload.yml
           name: artifact
           path: artifact
           search_artifacts: true
