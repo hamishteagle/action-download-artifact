@@ -241,7 +241,7 @@ jobs:
           path: artifact
           search_artifacts: true
       - name: Test
-        run: cat artifact/sha | grep $GITHUB_SHA"_new
+        run: cat artifact/sha | grep $GITHUB_SHA"_new"
 
   download-regexp-with-search-artifacts:
     runs-on: ubuntu-latest
