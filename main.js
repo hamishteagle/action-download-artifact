@@ -161,6 +161,7 @@ async function main() {
                     runID = run.id
                     core.info(`==> (found) Run ID: ${runID}`)
                     core.info(`==> (found) Run date: ${run.created_at}`)
+                    core.info(`==> (found) Artifacts: ${artifacts}`)
 
                     if (!workflow) {
                         workflow = await getWorkflow(client, owner, repo, runID)
