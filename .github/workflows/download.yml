@@ -224,15 +224,24 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+      - name: Dump new
+        run: |
+          mkdir artifact
+          echo $GITHUB_SHA"_new" > artifact/sha
+      - name: Upload new
+        uses: actions/upload-artifact@v4
+        with:
+          name: artifact
+          path: artifact
       - name: Download
         uses: ./
         with:
           workflow: upload.yml
-          name: artifact_duplicate
+          name: artifact
           path: artifact
           search_artifacts: true
       - name: Test
-        run: cat artifact/sha | grep $GITHUB_SHA"latest"
+        run: cat artifact/sha | grep $GITHUB_SHA"_new"
 
   download-regexp-with-search-artifacts:
     runs-on: ubuntu-latest
