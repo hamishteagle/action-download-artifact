@@ -124,6 +124,7 @@ async function main() {
                 ...(commit ? { head_sha: commit } : {}),
             }
             )) {
+                core.info(`==> (found) Runs: ${runs.data}`)
                 for (const run of runs.data) {
                     if (runNumber && run.run_number != runNumber) {
                         continue
