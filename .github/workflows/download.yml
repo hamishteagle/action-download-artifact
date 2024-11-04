@@ -235,11 +235,10 @@ jobs:
           path: artifact
           overwrite: true
       - name: Wait
-        run: sleep 120
+        run: sleep 60
       - name: Download
         uses: ./
         with:
-          workflow: upload.yml
           name: artifact
           path: artifact
           search_artifacts: true
