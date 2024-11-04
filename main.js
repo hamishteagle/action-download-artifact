@@ -125,6 +125,9 @@ async function main() {
             }
             )) {
                 for (const run of runs.data) {
+                    core.info(`==> Run: ${run.last_modified_at}`)
+                }
+                for (const run of runs.data) {
                     if (runNumber && run.run_number != runNumber) {
                         continue
                     }
