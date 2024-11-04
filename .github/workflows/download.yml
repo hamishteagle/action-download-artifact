@@ -241,6 +241,7 @@ jobs:
         with:
           name: artifact
           path: artifact
+          workflow_conclusion: ""
           search_artifacts: true
       - name: Peek
         run: cat artifact/sha
