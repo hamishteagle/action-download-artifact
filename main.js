@@ -124,26 +124,30 @@ async function main() {
                 ...(commit ? { head_sha: commit } : {}),
             }
             )) {
+                // for (const run of runs.data) {
+                //     core.info(`==> Run: ${run.id}`)
+                //     let artifacts = await client.paginate(client.rest.actions.listWorkflowRunArtifacts, {
+                //         owner: owner,
+                //         repo: repo,
+                //         run_id: run.id,
+                //     })
+                //     core.info(`==> Got artifacts from run: ${JSON.stringify(artifacts)}`)
+                // }
                 for (const run of runs.data) {
-                    core.info(`==> Run: ${run.id}`)
-                    let artifacts = await client.paginate(client.rest.actions.listWorkflowRunArtifacts, {
-                        owner: owner,
-                        repo: repo,
-                        run_id: run.id,
-                    })
-                    core.info(`==> Got artifacts from run: ${JSON.stringify(artifacts)}`)
-                }
-                for (const run of runs.data) {
+                    core.info(`==> Initial step Run: ${run.id}`)
                     if (runNumber && run.run_number != runNumber) {
                         continue
                     }
+                    core.info(`==> After number check Run: ${run.id}`)
                     if (workflowConclusion && (workflowConclusion != run.conclusion && workflowConclusion != run.status)) {
                         continue
                     }
+                    core.info(`==> After conclusion check Run: ${run.id}`)
                     if (!allowForks && run.head_repository.full_name !== `${owner}/${repo}`) {
                         core.info(`==> Skipping run from fork: ${run.head_repository.full_name}`)
                         continue
                     }
+                    core.info(`==> After fork check Run: ${run.id}`)
                     if (checkArtifacts || searchArtifacts) {
                         let artifacts = await client.paginate(client.rest.actions.listWorkflowRunArtifacts, {
                             owner: owner,
