@@ -233,6 +233,8 @@ jobs:
         with:
           name: artifact
           path: artifact
+      - name: Wait
+        run: sleep 60
       - name: Download
         uses: ./
         with:
