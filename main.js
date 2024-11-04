@@ -125,7 +125,13 @@ async function main() {
             }
             )) {
                 for (const run of runs.data) {
-                    core.info(`==> Run: ${run.last_modified_at}`)
+                    core.info(`==> Run: ${run.id}`)
+                    let artifacts = await client.paginate(client.rest.actions.listWorkflowRunArtifacts, {
+                        owner: owner,
+                        repo: repo,
+                        run_id: run.id,
+                    })
+                    core.info(`==> Got artifacts from run: ${JSON.stringify(artifacts)}`)
                 }
                 for (const run of runs.data) {
                     if (runNumber && run.run_number != runNumber) {
